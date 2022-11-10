@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import SingleAlbum from "../singleAlbum/SingleAlbum";
-import styles from "./Album.module.css";
+import { Card } from "../../components";
+import styles from "./Home.module.css";
 import { getAlbums } from "./albumAPI";
 
-const Album = () => {
+const Home = () => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
@@ -17,10 +17,10 @@ const Album = () => {
 
   return (
     <div class={styles.albumContainer}>
-      {albums && albums.map((item) => <SingleAlbum item={item} />)}
+      {albums && albums.map((item) => <Card item={item} />)}
       <br />
     </div>
   );
 };
 
-export default Album;
+export default Home;

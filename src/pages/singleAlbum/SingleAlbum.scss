@@ -1,0 +1,15 @@
+.album_wrapper {
+  width: 100%;
+  height: 100vh;
+
+  img {
+    height: 70vh;
+    width: 100%;
+    object-fit: contain;
+    display: inline-block;
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.409),
+      rgba(255, 255, 255, 0.246)
+    );
+  }
+}

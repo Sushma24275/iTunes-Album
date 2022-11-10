@@ -1,16 +1,26 @@
 import React from "react";
-import Album from "./features/album/Album";
-import { Counter } from "./features/counter/Counter";
-import Header from "./features/header/Header";
 
+import PageNotFound from "./features/pages/PageNotFound";
+import "./app.scss";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, SingleAlbum } from "./pages";
+import { Sidebar } from "./components";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <Header /> */}
-        <Album />
-      </header>
-    </div>
+    <Router>
+      <div className="app__container">
+        <div className="app__side--container">
+          <Sidebar />
+        </div>
+        <div className="app__main--container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path=":label" element={<SingleAlbum />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
