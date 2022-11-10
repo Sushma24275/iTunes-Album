@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Card.module.css";
-import { BsSuitHeart } from "react-icons/bs";
+import { BsSuitHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -67,7 +67,7 @@ function Card({ item }) {
           class={styles.cardContentRight}
           onClick={(e) => addToFavourite(e, item)}
         >
-          <BsSuitHeart color={isFavourited ? `red` : ``} />
+          <BsSuitHeartFill color={isFavourited ? `red` : `#858181`} />
         </div>
       </div>
     </div>
