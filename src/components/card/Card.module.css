@@ -88,6 +88,7 @@
 .cardContentRight {
   width: 20%;
   padding-left: 10px;
+  z-index: 10;
 }
 .cardContentRight svg {
   height: 24px;

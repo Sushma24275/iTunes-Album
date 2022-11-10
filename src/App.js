@@ -1,9 +1,9 @@
 import React from "react";
-
-import PageNotFound from "./features/pages/PageNotFound";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, SingleAlbum } from "./pages";
+import { Home, SingleAlbum, PageNotFound } from "./pages";
 import { Sidebar } from "./components";
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
           <Sidebar />
         </div>
         <div className="app__main--container">
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path=":label" element={<SingleAlbum />} />
