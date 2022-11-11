@@ -10,6 +10,9 @@ const Home = () => {
   const albums = useSelector((state) => state.albums.allAlbums);
   const [searchVal, setSearchVal] = useState("");
   const [searchedAlbums, setSearchedAlbums] = useState([]);
+  const [categoryVal, setCategoryVal] = useState([]);
+  const [categoryAlbums, setCategoryAlbums] = useState([]);
+
   useEffect(() => {
     const getAlbumsData = async () => {
       const albumdata = await getAlbums();
@@ -27,21 +30,44 @@ const Home = () => {
     setSearchedAlbums(searchedItems);
   }, [searchVal]);
 
+  useEffect(() => {
+    if (searchedAlbums.length > 0) {
+      const categoryItems = searchedAlbums.filter((item) => {
+        return categoryVal.includes(item.category.attributes.label);
+      });
+      setCategoryAlbums(categoryItems);
+    } else {
+      const categoryItems = albums.filter((item) => {
+        return categoryVal.includes(item.category.attributes.label);
+      });
+      setCategoryAlbums(categoryItems);
+    }
+  }, [categoryVal]);
+
+  const testing = () => {
+    let ans;
+    if (searchedAlbums.length > 0) {
+      if (categoryAlbums.length > 0) {
+        ans = categoryAlbums.map((item) => <Card item={item} />);
+      } else {
+        ans = searchedAlbums.map((item) => <Card item={item} />);
+      }
+    } else if (categoryAlbums.length > 0) {
+      ans = categoryAlbums.map((item) => <Card item={item} />);
+    } else {
+      ans = albums.map((item) => <Card item={item} />);
+    }
+    return ans;
+  };
+
   return (
     <>
-      <Header searchVal={searchVal} setSearchVal={setSearchVal} />
-      <div className={styles.albumContainer}>
-        {searchVal ? (
-          searchedAlbums.length > 0 ? (
-            searchedAlbums.map((item) => <Card item={item} />)
-          ) : (
-            <p>sorry</p>
-          )
-        ) : (
-          albums && albums.map((item) => <Card item={item} />)
-        )}
-        <br />
-      </div>
+      <Header
+        searchVal={searchVal}
+        setSearchVal={setSearchVal}
+        setCategoryVal={setCategoryVal}
+      />
+      <div className={styles.albumContainer}>{testing()}</div>
     </>
   );
 };
