@@ -46,7 +46,6 @@ function Header({ setSearchVal, searchVal, setCategoryVal }) {
           </div>
         </div>
         <div className="categories-container">
-          <BiCategoryAlt />
           {categoryNames.length > 0 && (
             <Autocomplete
               multiple
