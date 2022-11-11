@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAlbums } from "../home/albumAPI";
 import "./SingleAlbum.scss";
-
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 function SingleAlbum() {
   const [albums, setAlbums] = useState([]);
   const [selectedSong, setSelectedSong] = useState([]);
@@ -30,6 +31,9 @@ function SingleAlbum() {
     <h1>
       {selectedSong && (
         <div className={"album_wrapper"}>
+          <Link to="/" className="back_button">
+            <IoArrowBackCircleSharp fill="white" />
+          </Link>
           <div className={"album_wrapper__header"}>
             <img src={selectedSong[0]?.["im:image"][2].label} alt="cover" />
           </div>
@@ -42,9 +46,9 @@ function SingleAlbum() {
                 <span className="colon">:</span>
                 {selectedSong[0]?.["im:artist"].label}
               </h6>
-              <h6>
+              <h6 className="categoryWrapper">
                 <span>Category </span>
-
+                <span className="colon">:</span>
                 {selectedSong[0]?.category.attributes.label}
               </h6>
 
@@ -58,18 +62,20 @@ function SingleAlbum() {
                 <span className="colon">:</span>
                 {selectedSong[0]?.["im:itemCount"].label}
               </h6>
+
+              <h6>
+                <span> Link </span>
+                <span className="colon">:</span>
+                <a href={selectedSong[0]?.link.attributes.href} target="_new">
+                  {selectedSong[0]?.link.attributes.href}
+                </a>
+              </h6>
+              <h6>
+                <span> Release date </span> <span className="colon">:</span>{" "}
+                {selectedSong[0]?.["im:releaseDate"].label}
+              </h6>
+              <h6>{selectedSong[0]?.rights.label}</h6>
             </div>
-          </div>
-          <div className={"album_wrapper__footer"}>
-            <h6>Release Date: {selectedSong[0]?.["im:releaseDate"].label}</h6>
-            <h6>
-              <span>iTune Link </span>
-              <span className="colon">:</span>
-              <a href={selectedSong[0]?.link.attributes.href}>
-                {selectedSong[0]?.link.attributes.href}
-              </a>
-            </h6>
-            <h6>{selectedSong[0]?.rights.label}</h6>
           </div>
         </div>
       )}

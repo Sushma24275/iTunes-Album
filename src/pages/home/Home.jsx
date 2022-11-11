@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Header } from "../../components";
-import styles from "./Home.module.css";
+import "./Home.scss";
 import { getAlbums } from "./albumAPI";
 import { useDispatch } from "react-redux";
 import { addAlbums } from "../../slice/AlbumSlice";
@@ -67,7 +67,7 @@ const Home = () => {
         setSearchVal={setSearchVal}
         setCategoryVal={setCategoryVal}
       />
-      <div className={styles.albumContainer}>{testing()}</div>
+      <div className="albumContainer">{testing()}</div>
     </>
   );
 };
