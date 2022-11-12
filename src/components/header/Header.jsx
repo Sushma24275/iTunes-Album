@@ -9,10 +9,12 @@ import logo from "../../assets/icons8-phonograph-96.png";
 import { BsHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+//this is header component with seach and filters
 function Header({ setSearchVal, searchVal, setCategoryVal }) {
   const [categoryNames, setCategoryNames] = useState([]);
   const albums = useSelector((state) => state.albums.allAlbums);
   const favouriteAlbums = useSelector((state) => state.albums.favouriteAlbums);
+
   useEffect(() => {
     const categoryNamesValues = albums.map((item) => {
       return item.category.attributes.label;
@@ -30,6 +32,7 @@ function Header({ setSearchVal, searchVal, setCategoryVal }) {
 
   return (
     <div className="container">
+      <h1 className="title">MyTunes</h1>
       <div className="logo">
         <img src={logo} alt="logo" />
       </div>
@@ -50,7 +53,6 @@ function Header({ setSearchVal, searchVal, setCategoryVal }) {
           <AiOutlineClose />
         </div>
       </div>
-
       <div className="categories-container">
         {categoryNames.length > 0 && (
           <Autocomplete

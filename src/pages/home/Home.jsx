@@ -13,6 +13,7 @@ const Home = () => {
   const [categoryVal, setCategoryVal] = useState([]);
   const [categoryAlbums, setCategoryAlbums] = useState([]);
 
+  //run useEffect when the component renders
   useEffect(() => {
     const getAlbumsData = async () => {
       const albumdata = await getAlbums();
@@ -21,6 +22,7 @@ const Home = () => {
     getAlbumsData();
   }, []);
 
+  //run useEffect when the component gets the dependency( when an album is searched)
   useEffect(() => {
     const searchedItems = albums.filter((item) => {
       return item["im:name"].label
@@ -30,6 +32,7 @@ const Home = () => {
     setSearchedAlbums(searchedItems);
   }, [searchVal]);
 
+  //run useEffect when category is filtered
   useEffect(() => {
     if (searchedAlbums.length > 0) {
       const categoryItems = searchedAlbums.filter((item) => {
@@ -44,7 +47,8 @@ const Home = () => {
     }
   }, [categoryVal]);
 
-  const testing = () => {
+  //display albums based on the search/filter/no-filter
+  const displayAlbums = () => {
     let ans;
     if (searchedAlbums.length > 0) {
       if (categoryAlbums.length > 0) {
@@ -67,7 +71,7 @@ const Home = () => {
         setSearchVal={setSearchVal}
         setCategoryVal={setCategoryVal}
       />
-      <div className="albumContainer">{testing()}</div>
+      <div className="albumContainer">{displayAlbums()}</div>
     </>
   );
 };

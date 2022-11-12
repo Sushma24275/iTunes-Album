@@ -7,22 +7,22 @@ function SingleAlbum() {
   const [albums, setAlbums] = useState([]);
   const [selectedSong, setSelectedSong] = useState([]);
 
+  //to get the albums data when the component rendered
   useEffect(() => {
     const getAlbumsData = async () => {
       const albumdata = await getAlbums();
-      console.log("hello----->>>>", albumdata.entry);
       setAlbums(albumdata.entry);
     };
     getAlbumsData();
   }, []);
 
+  //to filter the specific album by checking the id
   useEffect(() => {
     if (albums) {
       let selectedSongDetails = albums.filter(
         (item) =>
           item.id.attributes["im:id"] === window.location.pathname.slice("1")
       );
-      console.log("selectedSongDetails", selectedSongDetails);
       setSelectedSong(selectedSongDetails);
     }
   }, [albums]);

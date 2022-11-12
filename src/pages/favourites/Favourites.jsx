@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 function Favourites() {
+  //get the favouriteAlbums from store
   const favouriteAlbums = useSelector((state) => state.albums.favouriteAlbums);
+
   return (
     <div className="favourites__wrapper">
       <Link to="/" className="back_button">

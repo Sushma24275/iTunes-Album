@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 function Card({ item }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  //navigate to specific album details when clicked on any album card
   const OnCickOfSingleAlbum = () => {
     navigate(`${item.id.attributes["im:id"]}`);
   };
@@ -21,6 +23,7 @@ function Card({ item }) {
     e.stopPropagation();
     setIsFavourited((prev) => !prev);
     if (!isFavourited) {
+      //adding to favourites
       dispatch(addFavouriteAlbums(item));
 
       toast(`${item["im:name"].label} is added to favourites 😃😃`, {
@@ -34,6 +37,7 @@ function Card({ item }) {
         theme: "light",
       });
     } else {
+      //removing from favourites
       dispatch(removeFavouriteAlbums(item));
 
       toast(`${item["im:name"].label} is removed from favourites 😞😞`, {
@@ -48,6 +52,7 @@ function Card({ item }) {
       });
     }
   };
+
   return (
     <div class={styles.card} onClick={OnCickOfSingleAlbum}>
       <div class={styles.cover}>
